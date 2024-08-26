@@ -4,14 +4,14 @@ using JetBrains.Annotations;
 
 namespace GameCore.Fields
 {
-    public abstract class Field : IService
+    public class GameField : IService
     {
-        protected List<List<Card>> _field;
+        protected Cell[,] _cells;
     
         public readonly int SizeX;
         public readonly int SizeY;
 
-        public Field(int sizeX, int sizeY)
+        public GameField(int sizeX, int sizeY)
         {
             SizeX = sizeX;
             SizeY = sizeY;
@@ -20,19 +20,15 @@ namespace GameCore.Fields
         }
 
         [CanBeNull] 
-        public abstract Card this[int i, int j] { get; set; }
-
-        public void MoveTo(Field field)
-        {
-            field._field = _field;
-            _field = null;
-        }
-    
+        public Cell this[int i, int j] { get => _cells[i, j];}
         private void InitField()
         {
             for (int i = 0; i < SizeY; i++)
             {
-                _field[i] = new List<Card>(SizeX);
+                for (int j =0 ; j < SizeX; j++)
+                {
+                    _cells[i, j] = new Cell();
+                }
             }
         }
     }

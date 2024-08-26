@@ -11,12 +11,13 @@ namespace GameCore.Hands
         [CanBeNull] 
         public abstract Card this[int i] { get; set; }
     
-        public void AddCard(Card card)
+        public bool TryAddCard(Card card)
         {
             if (_cards.Contains(card))
-                return;
+                return false;
             
             _cards.Add(card);
+            return true;
         }
         
         public void MoveTo(Hand hand)

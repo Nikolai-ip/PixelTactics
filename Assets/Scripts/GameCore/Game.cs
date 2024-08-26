@@ -23,7 +23,7 @@ namespace GameCore
                 _players[i].Register<Deck>(new StandardDeck(GenerateCards()));
                 _players[i].Register<Hand>(new StandardHand());
                 _players[i].Register<Dump>(new StandardDump());
-                _players[i].Register<Field>(new StandardField(GameConfig.FieldSizeX, GameConfig.FieldSizeY));
+                _players[i].Register<GameField>(new GameField(GameConfig.FieldSizeX, GameConfig.FieldSizeY));
             }
         
             _stateMachine = new GameStateMachine(
@@ -68,7 +68,7 @@ namespace GameCore
                 var hand = _players[i].Get<Hand>();
 
                 for (int j = 0; j < GameConfig.BeginHandAmount; j++) 
-                    hand.AddCard(deck.GetCard());
+                    hand.TryAddCard(deck.GetCard());
             }
         }
 

@@ -11,12 +11,13 @@ namespace GameCore.Dumps
         [CanBeNull] 
         public abstract Card this[int i] { get; set; }
     
-        public void Add(Card card)
+        public bool TryAdd(Card card)
         {
             if (_cards.Contains(card))
-                return;
+                return false;
             
             _cards.Add(card);
+            return true;
         }
         
         public void MoveTo(Dump dump)
