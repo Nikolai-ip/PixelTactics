@@ -1,23 +1,23 @@
 ﻿using System.Collections.Generic;
-using GameCore.Cards;
+using Assets.Scripts.GameCore.HeroModule;
 
 namespace GameCore.Decks
 {
     public abstract class Deck : IService
     {
-        protected LinkedList<Card> _cards;
+        protected LinkedList<Hero> _Heros;
         
-        public Deck(LinkedList<Card> cards)
+        public Deck(LinkedList<Hero> Heros)
         {
-            _cards = cards;
+            _Heros = Heros;
         }
-        public abstract void AddCard(Card card);
-        public abstract Card GetCard();
+        public abstract void AddHero(Hero Hero);
+        public abstract Hero GetHero();
         
         public void MoveTo(Deck deck)
         {
-            deck._cards = _cards;
-            _cards = null;
+            deck._Heros = _Heros;
+            _Heros = null;
         }
     }
 }

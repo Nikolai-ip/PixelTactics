@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using GameCore.Cards;
+using Assets.Scripts.GameCore.Fabrics;
+using Assets.Scripts.GameCore.HeroModule;
+using GameCore.Heros;
 using GameCore.Decks;
 using GameCore.Dumps;
 using GameCore.Fields;
@@ -11,21 +13,15 @@ namespace GameCore
     public class Game
     {
         private readonly GameStateMachine _stateMachine;
-        private readonly List<ServiceLocator> _players;
+        private readonly ServiceLocator _firstPlayer;
+        private readonly ServiceLocator _secondPlayer;
         private int _currentPlayerTurn = 0;
         public Game()
         {
-            _players = new List<ServiceLocator>();
+            var playerFabric = new PlayerFabric();
+            _firstPlayer = playerFabric.GetPlayer(new List<Hero>());
+            _secondPlayer = playerFabric.GetPlayer(new List<Hero>());
 
-            for (int i = 0; i < GameConfig.PlayersAmount; i++)
-            {
-                _players.Add(new ServiceLocator());
-                _players[i].Register<Deck>(new StandardDeck(GenerateCards()));
-                _players[i].Register<Hand>(new StandardHand());
-                _players[i].Register<Dump>(new StandardDump());
-                _players[i].Register<GameField>(new GameField(GameConfig.FieldSizeX, GameConfig.FieldSizeY));
-            }
-        
             _stateMachine = new GameStateMachine(
                 new Dictionary<Type, IState>()
                 {
@@ -35,18 +31,6 @@ namespace GameCore
                 });
 
             StartGameCycle();
-        }
-
-        private LinkedList<Card> GenerateCards()
-        {
-            var deck = new LinkedList<Card>();
-
-            deck.AddLast(new Card("Ассасин", 3, 1));
-            deck.AddLast(new Card("Жрица", 1, 7));
-            deck.AddLast(new Card("Рыцарь", 3, 10));
-            deck.AddLast(new Card("Пиромант", 3, 3));
-            
-            return deck;
         }
 
         private void StartGameCycle()
@@ -68,7 +52,7 @@ namespace GameCore
                 var hand = _players[i].Get<Hand>();
 
                 for (int j = 0; j < GameConfig.BeginHandAmount; j++) 
-                    hand.TryAddCard(deck.GetCard());
+                    hand.TryAddHero(deck.GetHero());
             }
         }
 

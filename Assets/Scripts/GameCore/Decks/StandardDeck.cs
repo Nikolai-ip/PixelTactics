@@ -1,25 +1,26 @@
-﻿using System.Collections.Generic;
-using GameCore.Cards;
+﻿using Assets.Scripts.GameCore.HeroModule;
+using System.Collections.Generic;
 
 namespace GameCore.Decks
 {
     class StandardDeck : Deck
     {
-        public StandardDeck(LinkedList<Card> cards) : base(cards) { }
+        public StandardDeck(IEnumerable<Hero> Heros):base(new LinkedList<Hero>(Heros))
+        {}
 
-        public override void AddCard(Card card)
+        public override void AddHero(Hero Hero)
         {
-            if (_cards.Contains(card))
+            if (_Heros.Contains(Hero))
                 return;
 
-            _cards.AddFirst(card);
+            _Heros.AddFirst(Hero);
         }
 
-        public override Card GetCard()
+        public override Hero GetHero()
         {
-            Card card = _cards.First.Value;
-            _cards.RemoveFirst();
-            return card;
+            Hero Hero = _Heros.First.Value;
+            _Heros.RemoveFirst();
+            return Hero;
         }
     }
 }

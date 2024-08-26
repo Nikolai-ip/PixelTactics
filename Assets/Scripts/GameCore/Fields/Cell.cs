@@ -5,7 +5,8 @@ namespace GameCore.Fields
     public class Cell
     {
         private Hero _hero;
-        public void HireHero(Hero hero)
+        public bool IsBusy => _hero != null;
+        public void SetHero(Hero hero)
         {
             _hero = hero;   
         }

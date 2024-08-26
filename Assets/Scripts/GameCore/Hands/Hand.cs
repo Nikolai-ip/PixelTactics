@@ -1,29 +1,29 @@
 ﻿using System.Collections.Generic;
-using GameCore.Cards;
+using Assets.Scripts.GameCore.HeroModule;
 using JetBrains.Annotations;
 
 namespace GameCore.Hands
 {
     public abstract class Hand : IService
     {
-        protected List<Card> _cards;
+        protected List<Hero> Heroes;
 
         [CanBeNull] 
-        public abstract Card this[int i] { get; set; }
+        public abstract Hero this[int i] { get; set; }
     
-        public bool TryAddCard(Card card)
+        public bool TryAddHero(Hero Hero)
         {
-            if (_cards.Contains(card))
+            if (Heroes.Contains(Hero))
                 return false;
             
-            _cards.Add(card);
+            Heroes.Add(Hero);
             return true;
         }
         
         public void MoveTo(Hand hand)
         {
-            hand._cards = _cards;
-            _cards = null;
+            hand.Heroes = Heroes;
+            Heroes = null;
         }
     }
 }

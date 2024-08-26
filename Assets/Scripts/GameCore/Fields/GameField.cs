@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using GameCore.Cards;
+﻿using Assets.Scripts.GameCore.HeroModule;
 using JetBrains.Annotations;
+using System;
 
 namespace GameCore.Fields
 {
@@ -31,5 +31,17 @@ namespace GameCore.Fields
                 }
             }
         }
+        public bool TryHireHero(Tuple<int,int> coord, Hero hero)
+        {
+            int x = coord.Item1;    
+            int y = coord.Item2;
+
+            if (_cells[x, y].IsBusy)
+                return false;
+
+            _cells[x,y].SetHero(hero);
+            return true;
+        }
+
     }
 }

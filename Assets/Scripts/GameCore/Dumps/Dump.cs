@@ -1,29 +1,29 @@
 ﻿using System.Collections.Generic;
-using GameCore.Cards;
+using Assets.Scripts.GameCore.HeroModule;
 using JetBrains.Annotations;
 
 namespace GameCore.Dumps
 {
     public abstract class Dump : IService
     {
-        protected List<Card> _cards;
+        protected List<Hero> Heroes;
     
         [CanBeNull] 
-        public abstract Card this[int i] { get; set; }
+        public abstract Hero this[int i] { get; set; }
     
-        public bool TryAdd(Card card)
+        public bool TryAdd(Hero Hero)
         {
-            if (_cards.Contains(card))
+            if (Heroes.Contains(Hero))
                 return false;
             
-            _cards.Add(card);
+            Heroes.Add(Hero);
             return true;
         }
         
         public void MoveTo(Dump dump)
         {
-            dump._cards = _cards;
-            _cards = null;
+            dump.Heroes = Heroes;
+            Heroes = null;
         }
     }
 }
