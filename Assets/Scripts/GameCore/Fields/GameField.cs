@@ -42,6 +42,6 @@ namespace GameCore.Fields
             _cells[x,y].SetHero(hero);
             return true;
         }
-
+        
     }
 }
