@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Assets.Scripts.GameCore.Fabrics;
+using Assets.Scripts.GameCore.GamePhases;
 using Assets.Scripts.GameCore.HeroModule;
 using GameCore.Decks;
+using GameCore.Fields;
 using GameCore.Hands;
 
 namespace GameCore
@@ -19,68 +21,20 @@ namespace GameCore
             _firstPlayer = playerFabric.GetPlayer(new List<Hero>());
             _secondPlayer = playerFabric.GetPlayer(new List<Hero>());
 
-            _stateMachine = new GameStateMachine(
-                new Dictionary<Type, IState>()
-                {
-                    { typeof(Beginning), new Beginning() },
-                    { typeof(FirstWave), new FirstWave() },
-                    { typeof(GameCycle), new GameCycle() },
-                });
+            _stateMachine = new TwoPlayersStandartRules()
+                .InitStates()
+                .InitPlayers(new List<ServiceLocator> { _firstPlayer, _secondPlayer })
+                .GetGameStateMachine;
 
             StartGameCycle();
         }
 
         private void StartGameCycle()
         {
-            _stateMachine.EnterState<Beginning>();  
-            _stateMachine.EnterState<FirstWave>();  
+            _stateMachine.EnterState<GameCycle>();  
         }
     }
 
-    public class Beginning : IState
-    {
-        private readonly List<ServiceLocator> _players;
-
-        public void Enter()
-        {
-            for (int i = 0; i < _players.Count; i++)
-            {
-                var deck = _players[i].Get<Deck>();
-                var hand = _players[i].Get<Hand>();
-
-                for (int j = 0; j < GameConfig.BeginHandAmount; j++) 
-                    hand.TryAddHero(deck.GetHero());
-            }
-        }
-
-        public void Exit()
-        {
-            
-        }
-
-        public void HandleInput(Input input)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class GameCycle : IState
-    {
-        public void Enter()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Exit()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void HandleInput(Input input)
-        {
-            throw new NotImplementedException();
-        }
-    }
 
     public class FirstWave : IState
     {
@@ -91,25 +45,38 @@ namespace GameCore
 
         public void Exit()
         {
-            throw new NotImplementedException();
         }
 
         public void HandleInput(Input input)
         {
-            throw new NotImplementedException();
         }
     }
 
     public class GameStateMachine
     {
-        private readonly Dictionary<Type, IState> _states;
+        private Dictionary<Type, IState> _states;
         private IState _currentState;
+        public ServiceLocator FirstPlayer { get; private set; }
+        public ServiceLocator SecondPlayer { get; private set; }
+        public GameField GameField { get; private set; }
+        
 
-        public GameStateMachine(Dictionary<Type, IState> states)
+        public void InitStates(Dictionary<Type, IState> states)
         {
             _states = states;
         }
 
+        public void InitTwoPlayers(ServiceLocator firstPlayer, ServiceLocator secondPlayer)
+        {
+            FirstPlayer = firstPlayer;
+            SecondPlayer = secondPlayer;
+        }
+        public void InitGameField(GameField gameField)
+        {
+            GameField = gameField;
+        }
+        
+        
         public void EnterState<T>()
         {
             var stateType = typeof(T);

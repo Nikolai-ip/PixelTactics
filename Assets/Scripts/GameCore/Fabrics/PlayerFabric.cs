@@ -15,10 +15,10 @@ namespace Assets.Scripts.GameCore.Fabrics
 {
     internal class PlayerFabric
     {
-        public ServiceLocator GetPlayer(IEnumerable<Hero> Heros)
+        public ServiceLocator GetPlayer(IEnumerable<Hero> Heroes)
         {
             var player = new ServiceLocator();
-            player.Register<Deck>(new StandardDeck(Heros));
+            player.Register<Deck>(new StandardDeck(Heroes));
             player.Register<Hand>(new StandardHand());
             player.Register<Dump>(new StandardDump());
             player.Register<GameField>(new GameField(GameConfig.FieldSizeX, GameConfig.FieldSizeY));

@@ -1,11 +1,12 @@
 using GameCore;
 using UnityEngine;
 
-public class GameBootstrapper : MonoBehaviour
+public class GameBootstrapper
 {
-    private Game _game;
+    private static Game _game;
 
-    private void Start()
+    [RuntimeInitializeOnLoadMethod]
+    private static void InitGame()
     {
         _game = new Game();
     }
