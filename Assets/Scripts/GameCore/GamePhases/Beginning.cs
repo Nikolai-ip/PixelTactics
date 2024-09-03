@@ -1,17 +1,14 @@
 ﻿using GameCore.Decks;
 using GameCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GameCore.Hands;
+using Assets.Scripts.GameCore.InputActions;
 
 namespace Assets.Scripts.GameCore.GamePhases
 { 
     public class Beginning : IState
     {
-        private readonly List<ServiceLocator> _players;
+        private readonly List<ServiceContainer> _players;
 
         public void Enter()
         {
@@ -32,7 +29,6 @@ namespace Assets.Scripts.GameCore.GamePhases
         {
             return this;
         }
-
         public void HandleInput(Input input)
         {
         }

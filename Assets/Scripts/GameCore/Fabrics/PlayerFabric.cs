@@ -9,19 +9,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Assets.Scripts.GameCore.HeroModule;
+using Assets.Scripts.GameCore.GamePhases.WavePhases;
 
 
 namespace Assets.Scripts.GameCore.Fabrics
 {
     internal class PlayerFabric
     {
-        public ServiceLocator GetPlayer(IEnumerable<Hero> Heroes)
+        public ServiceContainer GetPlayer(IEnumerable<Hero> Heroes,GameField gameField)
         {
-            var player = new ServiceLocator();
+            var player = new ServiceContainer();
             player.Register<Deck>(new StandardDeck(Heroes));
             player.Register<Hand>(new StandardHand());
             player.Register<Dump>(new StandardDump());
-            player.Register<GameField>(new GameField(GameConfig.FieldSizeX, GameConfig.FieldSizeY));
+            player.Register<GameField>(gameField);
+            player.Register<PlayerStateMachine>(new PlayerStateMachine());
             return player;
         }
     }

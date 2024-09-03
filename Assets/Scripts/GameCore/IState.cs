@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.GameCore.InputActions;
 
 namespace GameCore
 {
@@ -9,22 +9,10 @@ namespace GameCore
         void HandleInput(Input input);
     }
 
-    public class Input
-    {
-        public Vector2Int PosFrom;
-        public Vector2Int PosTo;
-        public ActionType Action;
-    }
-
     public enum ActionType
     {
         TakeCardFromDeck,
         HireHero,
         
     }
-    
-    
-    // Attack,
-    // Spell,
-    // Order,
 }

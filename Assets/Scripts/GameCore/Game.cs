@@ -1,29 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.GameCore.Fabrics;
 using Assets.Scripts.GameCore.GamePhases;
 using Assets.Scripts.GameCore.HeroModule;
-using GameCore.Decks;
+using Assets.Scripts.GameCore.InputActions;
 using GameCore.Fields;
-using GameCore.Hands;
 
 namespace GameCore
 {
     public class Game
     {
         private readonly GameStateMachine _stateMachine;
-        private readonly ServiceLocator _firstPlayer;
-        private readonly ServiceLocator _secondPlayer;
         private int _currentPlayerTurn = 0;
         public Game()
         {
             var playerFabric = new PlayerFabric();
-            _firstPlayer = playerFabric.GetPlayer(new List<Hero>());
-            _secondPlayer = playerFabric.GetPlayer(new List<Hero>());
+            var leftField = new GameField(GameConfig.FieldSizeX, GameConfig.FieldSizeY);
+            var leftPlayer = playerFabric.GetPlayer(new List<Hero>(), leftField);
+            var rightField = new GameField(GameConfig.FieldSizeX, GameConfig.FieldSizeY);
+            var rightPlayer = playerFabric.GetPlayer(new List<Hero>(), rightField);
 
             _stateMachine = new TwoPlayersStandartRules()
                 .InitStates()
-                .InitPlayers(new List<ServiceLocator> { _firstPlayer, _secondPlayer })
+                .InitPlayers(new List<ServiceContainer> { leftPlayer, rightPlayer })
+                .InitGameFields(new List<GameField> { leftField, rightField })
                 .GetGameStateMachine;
 
             StartGameCycle();
@@ -35,45 +36,34 @@ namespace GameCore
         }
     }
 
-
-    public class FirstWave : IState
-    {
-        public void Enter()
-        {
-            
-        }
-
-        public void Exit()
-        {
-        }
-
-        public void HandleInput(Input input)
-        {
-        }
-    }
-
     public class GameStateMachine
     {
         private Dictionary<Type, IState> _states;
         private IState _currentState;
-        public ServiceLocator FirstPlayer { get; private set; }
-        public ServiceLocator SecondPlayer { get; private set; }
-        public GameField GameField { get; private set; }
-        
+        public ServiceContainer LeftPlayer { get; private set; }
+        public ServiceContainer RightPlayer { get; private set; }
+        public GameField RightGameField { get; private set; }
+        public GameField LeftGameField { get; private set; }
+
+        public ServiceContainer CurrentPlayer { get; private set; }
 
         public void InitStates(Dictionary<Type, IState> states)
         {
             _states = states;
+            _currentState = _states.First().Value;
+            _currentState.Enter();
         }
 
-        public void InitTwoPlayers(ServiceLocator firstPlayer, ServiceLocator secondPlayer)
+        public void InitTwoPlayers(ServiceContainer leftPlayer, ServiceContainer rightPlayer, ServiceContainer currentPlayer)
         {
-            FirstPlayer = firstPlayer;
-            SecondPlayer = secondPlayer;
+            LeftPlayer = leftPlayer;
+            RightPlayer = rightPlayer;
+            CurrentPlayer = currentPlayer;
         }
-        public void InitGameField(GameField gameField)
+        public void InitGameFields(GameField leftField,GameField rightField)
         {
-            GameField = gameField;
+            RightGameField = rightField;
+            LeftGameField = leftField;
         }
         
         
@@ -87,6 +77,10 @@ namespace GameCore
                 _currentState.Exit();
             _currentState = _states[stateType];
             _currentState.Enter();
+        }
+        public void HandleInput(Input input)
+        {
+            _currentState.HandleInput(input);
         }
     }
 }

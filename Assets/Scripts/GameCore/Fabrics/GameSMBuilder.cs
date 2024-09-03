@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.GameCore.GamePhases;
-using GameCore;
+﻿using GameCore;
+using GameCore.Fields;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.GameCore.Fabrics
@@ -14,6 +14,8 @@ namespace Assets.Scripts.GameCore.Fabrics
         }
         public abstract TwoPlayersStandartRules InitStates();
 
-        public abstract TwoPlayersStandartRules InitPlayers(List<ServiceLocator> players);
+        public abstract TwoPlayersStandartRules InitPlayers(List<ServiceContainer> players);
+        public abstract TwoPlayersStandartRules InitGameFields(List<GameField> gameFields);
+
     }
 }

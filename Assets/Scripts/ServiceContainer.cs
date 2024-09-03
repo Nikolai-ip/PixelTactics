@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class ServiceLocator
+public class ServiceContainer
 {
     private Dictionary<Type, IService> _services;
 
