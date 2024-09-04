@@ -13,6 +13,8 @@ namespace GameCore
     {
         TakeCardFromDeck,
         HireHero,
+        MoveHero,
+
         
     }
 }

@@ -2,7 +2,7 @@
 using Assets.Scripts.GameCore.HeroModule;
 using JetBrains.Annotations;
 
-namespace GameCore.Dumps
+namespace GameCore.Cards
 {
     public abstract class Dump : IService
     {

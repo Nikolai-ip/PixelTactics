@@ -2,7 +2,7 @@
 using Assets.Scripts.GameCore.HeroModule;
 using JetBrains.Annotations;
 
-namespace GameCore.Hands
+namespace GameCore.Cards
 {
     public abstract class Hand : IService
     {

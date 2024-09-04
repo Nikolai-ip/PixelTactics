@@ -1,7 +1,6 @@
-﻿using GameCore.Decks;
+﻿using GameCore.Cards;
 using GameCore;
 using System.Collections.Generic;
-using GameCore.Hands;
 using Assets.Scripts.GameCore.InputActions;
 
 namespace Assets.Scripts.GameCore.GamePhases

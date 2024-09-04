@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.GameCore.HeroModule;
 
-namespace GameCore.Hands
+namespace GameCore.Cards
 {
     class StandardHand : Hand
     {

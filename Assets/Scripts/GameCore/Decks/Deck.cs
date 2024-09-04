@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.GameCore.HeroModule;
 
-namespace GameCore.Decks
+namespace GameCore.Cards
 {
     public abstract class Deck : IService
     {
