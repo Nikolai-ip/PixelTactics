@@ -2,6 +2,7 @@
 using GameCore.Cards;
 using System.Collections.Generic;
 using Assets.Scripts.GameCore.HeroModule;
+using GameCore;
 
 
 namespace Assets.Scripts.GameCore.Fabrics
@@ -15,7 +16,6 @@ namespace Assets.Scripts.GameCore.Fabrics
             player.Register<Hand>(new StandardHand());
             player.Register<Dump>(new StandardDump());
             player.Register<GameField>(gameField);
-            player.Register<PlayerStateMachine>(new PlayerStateMachine());
             return player;
         }
     }

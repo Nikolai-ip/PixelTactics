@@ -1,6 +1,7 @@
 ﻿using GameCore;
 using GameCore.Fields;
 using System.Collections.Generic;
+using Assets.Scripts.Cmd;
 
 namespace Assets.Scripts.GameCore.Fabrics
 {
@@ -12,9 +13,7 @@ namespace Assets.Scripts.GameCore.Fabrics
         {
             GameStateMachine = new GameStateMachine();
         }
-        public abstract TwoPlayersStandartRules InitStates();
-
-        public abstract TwoPlayersStandartRules InitPlayers(List<ServiceContainer> players);
+        public abstract TwoPlayersStandartRules InitStates(List<PlayerActionHandler> players);
         public abstract TwoPlayersStandartRules InitGameFields(List<GameField> gameFields);
 
     }

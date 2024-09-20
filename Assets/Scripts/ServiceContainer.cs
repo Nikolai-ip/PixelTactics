@@ -4,7 +4,10 @@ using System.Collections.Generic;
 public class ServiceContainer
 {
     private Dictionary<Type, IService> _services;
-
+    public ServiceContainer()
+    {
+        _services = new Dictionary<Type, IService>();
+    }
     public void Register<T>(IService service) where T : IService
     {
         if (_services.ContainsKey(typeof(T)))

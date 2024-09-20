@@ -1,6 +1,5 @@
-﻿using Assets.Scripts.GameCore.HeroModule;
-using JetBrains.Annotations;
-using System;
+﻿using Assets.Scripts.GameCore.Fields;
+using Assets.Scripts.GameCore.HeroModule;
 
 namespace GameCore.Fields
 {
@@ -18,11 +17,10 @@ namespace GameCore.Fields
         
             InitField();
         }
-
-        [CanBeNull] 
         public Cell this[int i, int j] { get => _cells[i, j];}
         private void InitField()
         {
+            _cells = new Cell[SizeX, SizeY];
             for (int i = 0; i < SizeY; i++)
             {
                 for (int j =0 ; j < SizeX; j++)
@@ -31,10 +29,10 @@ namespace GameCore.Fields
                 }
             }
         }
-        public bool TryHireHero(Tuple<int,int> coord, Hero hero)
+        public bool TryHireHero(Coord coord, Hero hero)
         {
-            int x = coord.Item1;    
-            int y = coord.Item2;
+            int x = coord.X;    
+            int y = coord.Y;
 
             if (_cells[x, y].IsBusy)
                 return false;

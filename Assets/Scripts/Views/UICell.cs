@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.GameCore.Fields;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Views
@@ -7,6 +8,6 @@ namespace Assets.Scripts.Views
     {
         [SerializeField] private int _x;
         [SerializeField] private int _y;
-        public (int,int) Coord => (_x, _y);
+        public Coord Coord => new Coord(_x,_y);
     }
 }

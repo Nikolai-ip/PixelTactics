@@ -1,7 +1,7 @@
 ﻿using GameCore.Cards;
 using GameCore;
 using System.Collections.Generic;
-using Assets.Scripts.GameCore.InputActions;
+using Assets.Scripts.Cmd;
 
 namespace Assets.Scripts.GameCore.GamePhases
 { 
@@ -28,7 +28,7 @@ namespace Assets.Scripts.GameCore.GamePhases
         {
             return this;
         }
-        public void HandleInput(Input input)
+        public void HandleInput(ICommand input)
         {
         }
     }

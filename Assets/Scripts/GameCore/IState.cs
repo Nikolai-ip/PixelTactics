@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.GameCore.InputActions;
+﻿using Assets.Scripts.Cmd;
 
 namespace GameCore
 {
@@ -6,15 +6,6 @@ namespace GameCore
     {
         void Enter();
         void Exit();
-        void HandleInput(Input input);
-    }
-
-    public enum ActionType
-    {
-        TakeCardFromDeck,
-        HireHero,
-        MoveHero,
-
-        
+        void HandleInput(ICommand command);
     }
 }
