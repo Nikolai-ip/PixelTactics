@@ -28,8 +28,10 @@ namespace Assets.Scripts.GameCore.GamePhases
         {
             return this;
         }
-        public void HandleInput(ICommand input)
+
+        public bool TryHandle(ICommand command)
         {
+            return false;
         }
     }
 }

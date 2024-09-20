@@ -1,10 +1,10 @@
-﻿
-using System;
+﻿using System;
+using Assets.Scripts.Cmd;
 
 namespace Assets.Scripts.Views
 {
-    internal interface IInteractable
+    internal interface IInteractable<TCommand> where TCommand:ICommand
     {
-        event Action<object> OnInteract;
+        event Action<TCommand> OnInteract;
     }
 }

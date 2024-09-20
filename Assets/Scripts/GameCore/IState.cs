@@ -2,10 +2,9 @@
 
 namespace GameCore
 {
-    public interface IState
+    public interface IState:ICommandHandler<ICommand>
     {
         void Enter();
         void Exit();
-        void HandleInput(ICommand command);
     }
 }

@@ -25,9 +25,11 @@ namespace Assets.Scripts.GameCore.GamePhases
             RightPlayer = rightPlayer;
             return this;
         }
-        public void HandleInput(ICommand input)
+
+        public bool TryHandle(ICommand command)
         {
-            CurrentPlayer.Process(input);
+            var result = CurrentPlayer.Process(command);
+            return result;
         }
     }
 }

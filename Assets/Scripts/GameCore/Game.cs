@@ -32,7 +32,7 @@ namespace GameCore
         }
     }
 
-    public class GameStateMachine
+    public class GameStateMachine:ICommandHandler<ICommand>
     {
         private Dictionary<Type, IState> _states;
         private IState _currentState;
@@ -57,9 +57,10 @@ namespace GameCore
             _currentState = _states[stateType];
             _currentState.Enter();
         }
-        public void HandleInput(ICommand command)
+        public bool TryHandle(ICommand command)
         {
-            _currentState.HandleInput(command);
+            var result = _currentState.TryHandle(command);
+            return result;
         }
     }
 }

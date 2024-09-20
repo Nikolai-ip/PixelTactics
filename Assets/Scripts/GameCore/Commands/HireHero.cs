@@ -4,7 +4,7 @@ using Assets.Scripts.GameCore.HeroModule;
 
 namespace Assets.Scripts.GameCore.Commands
 {
-    public class HireHero : IPlayerCommand
+    public class HireHero : ICommand
     {
         public HireHero(Coord hireCoord, Hero hero)
         {
@@ -12,9 +12,7 @@ namespace Assets.Scripts.GameCore.Commands
             Hero = hero;
         }
 
-        public Coord HireCoord { get; private set; }
-        public Hero Hero { get; private set; }
-
-        public int ActionCost => 1;
+        public Coord HireCoord { get; }
+        public Hero Hero { get; }
     }
 }
