@@ -3,9 +3,9 @@ using GameCore;
 using GameCore.CommandHandlers;
 using GameCore.Fields;
 
-namespace Assets.Scripts.GameCore.Fabrics
+namespace Infrastructure.Factories.GameEntities
 {
-    public class PlayerActionHandlerFabric
+    public class PlayerActionHandlerFactory
     {
         public virtual PlayerActionHandler Get(ServiceContainer player, ServiceContainer enemy)
         {

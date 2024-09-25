@@ -12,12 +12,13 @@ namespace Assets.Scripts.Controllers
     internal class HeroSelectController:MonoBehaviour
     {
         private ICommandHandler<ICommand> _commandHandler;
-        private IInteractable<SelectHero> _uiSelector;
-        public void Init(ICommandHandler<ICommand> commandHandler)
+        private IInteractable<SelectHero> _heroSelector;
+        public void Init(ICommandHandler<ICommand> commandHandler,IInteractable<SelectHero> heroSelector)
         {
             DataUpdateBus.Subscribe<HeroContainer>(OnHeroSelected);
             _commandHandler = commandHandler;
-            _uiSelector.OnInteract += HandleHeroSelection;
+            _heroSelector = heroSelector;
+            _heroSelector.OnInteract += HandleHeroSelection;
         }
         public void HandleHeroSelection(SelectHero selectSignal)
         {
@@ -26,6 +27,7 @@ namespace Assets.Scripts.Controllers
         private void OnHeroSelected(HeroContainer heroContainer)
         {
             var hero = heroContainer.Hero;
+            Debug.Log(hero.Name);
         }
     }
 }

@@ -1,9 +1,9 @@
-﻿using GameCore.Cards;
-using GameCore;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Assets.Scripts.Cmd;
+using GameCore;
+using GameCore.Cards;
 
-namespace Assets.Scripts.GameCore.GamePhases
+namespace Infrastructure.GameSM.GameStates
 { 
     public class Beginning : IState
     {

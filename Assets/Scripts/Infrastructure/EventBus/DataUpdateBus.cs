@@ -20,6 +20,14 @@ namespace EventBus
             }
         }
 
+        public static void Remove<T>(Action<T> callBack) where T : ISignal
+        {
+            var key = typeof(T);
+            if (_signalCallbacks.ContainsKey(key))
+            {
+                _signalCallbacks.Remove(key);
+            }
+        }
         public static void Invoke<T>(T signal) where T:ISignal
         {
             if (_signalCallbacks.TryGetValue(signal.GetType(), out var actions))

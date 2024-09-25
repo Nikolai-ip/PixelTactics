@@ -1,15 +1,22 @@
 ﻿using Assets.Scripts.Cmd;
+using Assets.Scripts.GameCore;
 using GameCore;
 
-namespace Assets.Scripts.GameCore.GamePhases
+namespace Infrastructure.GameSM.GameStates
 {
     public class GameCycle : IState
     {
+        private readonly GameStateMachine _gameStateMachine;
         private GameStateMachine _game;
         public PlayerActionHandler LeftPlayer { get; private set; }
         public PlayerActionHandler RightPlayer { get; private set; }
         public PlayerActionHandler CurrentPlayer { get; private set; }
         public WaveType CurrentWaveType { get; private set; }
+        public GameCycle(GameStateMachine gameStateMachine)
+        {
+            _gameStateMachine = gameStateMachine;
+        }
+
         public void Enter()
         {
         }

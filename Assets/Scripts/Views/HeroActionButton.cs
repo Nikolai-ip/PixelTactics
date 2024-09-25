@@ -1,5 +1,4 @@
-﻿using Assets.GameCore.HeroModule;
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Views

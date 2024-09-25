@@ -1,15 +1,13 @@
-﻿using GameCore.Fields;
-using GameCore.Cards;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Assets.Scripts.GameCore.HeroModule;
-using GameCore;
+using GameCore.Cards;
+using GameCore.Fields;
 
-
-namespace Assets.Scripts.GameCore.Fabrics
+namespace Infrastructure.Factories.GameEntities
 {
-    internal class PlayerFabric
+    internal class PlayerFactory
     {
-        public ServiceContainer GetPlayer(IEnumerable<Hero> Heroes,GameField gameField)
+        public ServiceContainer Get(IEnumerable<Hero> Heroes,GameField gameField)
         {
             var player = new ServiceContainer();
             player.Register<Deck>(new StandardDeck(Heroes));
