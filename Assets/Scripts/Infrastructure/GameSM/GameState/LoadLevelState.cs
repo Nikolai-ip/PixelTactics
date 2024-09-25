@@ -5,7 +5,7 @@ using Infrastructure.Services;
 
 namespace Infrastructure.GameSM.GameState
 {
-    public class LoadLevelState : IPayLoadedState<string>
+    public class LoadLevelState : IPayLoadedState<string>, IState
     {
         private readonly GameStateMachine _gameSm;
         private readonly SceneLoader _sceneLoader;
@@ -17,12 +17,6 @@ namespace Infrastructure.GameSM.GameState
             _sceneLoader = sceneLoader;
             _gameFactory = gameFactory;
         }
-
-        public bool TryHandle(ICommand command)
-        {
-            return false;
-        }
-
         public void Enter(string sceneName)
         {
             _sceneLoader.Load(sceneName, OnLoaded);
@@ -30,6 +24,12 @@ namespace Infrastructure.GameSM.GameState
         public void Exit()
         {
         }
+
+        public void Enter()
+        {
+            OnLoaded();
+        }
+
         private void OnLoaded()
         {
             _gameFactory.CreateHud();

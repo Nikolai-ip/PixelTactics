@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using Infrastructure.Cmd;
+
 namespace Assets.Scripts.Cmd
 {
     public class PlayerActionHandler : ICommandProcessor

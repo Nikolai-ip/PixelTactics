@@ -2,6 +2,7 @@
 using Assets.Scripts.Cmd;
 using GameCore;
 using GameCore.Cards;
+using Infrastructure.Cmd;
 using Infrastructure.Services;
 
 namespace Infrastructure.GameSM.GameState

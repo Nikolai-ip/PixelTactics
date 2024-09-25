@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.GameCore.HeroModule;
 
-namespace Assets.Scripts.Views.Interfaces
+namespace Views.Interfaces
 {
     internal interface IHeroActionsDiplay
     {

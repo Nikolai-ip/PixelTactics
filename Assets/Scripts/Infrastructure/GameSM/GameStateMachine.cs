@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Assets.Scripts.Cmd;
 using Infrastructure;
+using Infrastructure.Cmd;
 using Infrastructure.Factory;
 using Infrastructure.GameSM;
 using Infrastructure.GameSM.GameState;
@@ -10,17 +11,18 @@ using Infrastructure.Services.ServiceLocator;
 
 namespace GameCore
 {
-    public class GameStateMachine:ICommandHandler<ICommand>
+    public class GameStateMachine
     {
         private Dictionary<Type, IExitableState> _states;
         private IExitableState _currentState;
         public GameStateMachine(SceneLoader sceneLoader, GameServices services)
         {
+            var gameCycle = new GameCycle(this);
             _states = new Dictionary<Type, IExitableState>()
             {
-                {typeof(BootstrapState), new BootstrapState(this, sceneLoader, services)},
+                {typeof(BootstrapState), new BootstrapState(this, sceneLoader, gameCycle, services)},
                 {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader,services.Single<IGameFactory>())},
-                {typeof(GameCycle), new GameCycle(this)},
+                {typeof(GameCycle), gameCycle},
             };
         }
         public void Enter<TState>() where TState: class, IState
@@ -43,12 +45,6 @@ namespace GameCore
         private TState GetState<TState>() where TState: class, IExitableState
         {
             return _states[typeof(TState)] as TState;
-        }
-
-        public bool TryHandle(ICommand command)
-        {
-            var result = _currentState.TryHandle(command);
-            return result;
         }
     }
 }

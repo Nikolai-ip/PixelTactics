@@ -1,8 +1,7 @@
 ﻿using Assets.Scripts.GameCore.Fields;
-using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Views
+namespace Views
 {
     internal class UICell:MonoBehaviour
     {

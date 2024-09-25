@@ -2,6 +2,7 @@
 using Assets.Scripts.GameCore.Commands;
 using Assets.Scripts.GameCore.HeroModule;
 using GameCore.Fields;
+using Infrastructure.Cmd;
 
 namespace GameCore.CommandHandlers
 {

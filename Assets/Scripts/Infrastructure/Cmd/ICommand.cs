@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Cmd
+﻿namespace Infrastructure.Cmd
 {
     public interface ICommand
     {

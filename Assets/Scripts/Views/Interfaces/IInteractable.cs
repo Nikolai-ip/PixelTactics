@@ -1,7 +1,8 @@
 ﻿using System;
 using Assets.Scripts.Cmd;
+using Infrastructure.Cmd;
 
-namespace Assets.Scripts.Views
+namespace Views.Interfaces
 {
     internal interface IInteractable<TCommand> where TCommand:ICommand
     {

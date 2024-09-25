@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Cmd;
 using Assets.Scripts.GameCore.Fields;
+using Infrastructure.Cmd;
 
 namespace Assets.Scripts.GameCore.Commands
 {

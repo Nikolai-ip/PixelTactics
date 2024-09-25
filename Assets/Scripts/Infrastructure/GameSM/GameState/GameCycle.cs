@@ -1,10 +1,12 @@
 ﻿using Assets.Scripts.Cmd;
 using Assets.Scripts.GameCore;
 using GameCore;
+using Infrastructure.Cmd;
+using Infrastructure.Services;
 
 namespace Infrastructure.GameSM.GameState
 {
-    public class GameCycle : IState
+    public class GameCycle : IState, ICommandHandler<ICommand>, IService
     {
         private readonly GameStateMachine _gameStateMachine;
         private GameStateMachine _game;

@@ -1,9 +1,8 @@
-﻿
-using Assets.Scripts.GameCore.HeroModule;
-using Assets.Scripts.Views.Interfaces;
+﻿using Assets.Scripts.GameCore.HeroModule;
 using UnityEngine;
+using Views.Interfaces;
 
-namespace Assets.Scripts.Views
+namespace Views
 {
     internal class HeroActionsDisplayer : MonoBehaviour, IHeroActionsDiplay
     {

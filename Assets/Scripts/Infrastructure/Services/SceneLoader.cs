@@ -8,6 +8,7 @@ namespace Infrastructure.Services
     public class SceneLoader
     {
         private readonly ICoroutineRunner _coroutineRunner;
+        public string CurrentScene => SceneManager.GetActiveScene().name;
 
         public SceneLoader(ICoroutineRunner coroutineRunner)
         {

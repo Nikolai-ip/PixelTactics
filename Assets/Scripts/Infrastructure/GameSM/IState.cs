@@ -11,7 +11,7 @@ namespace Infrastructure.GameSM
         void Enter(TPayload payload);
     }
 
-    public interface IExitableState:ICommandHandler<ICommand>
+    public interface IExitableState
     {
         void Exit();
     }

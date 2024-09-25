@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Views
+namespace Views
 {
     internal class UIHeroEventTrigger:MonoBehaviour
     {

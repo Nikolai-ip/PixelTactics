@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEngine;
-
-namespace Assets.Scripts.Views
+﻿namespace Views
 {
     // internal class HeroActionButton : MonoBehaviour, IInteractable
     // {
