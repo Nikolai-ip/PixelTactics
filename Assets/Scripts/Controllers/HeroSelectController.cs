@@ -1,13 +1,11 @@
-﻿using System;
-using Assets.Scripts.Cmd;
+﻿using Assets.Scripts.Cmd;
 using Assets.Scripts.GameCore.Commands;
-using Assets.Scripts.GameCore.Fields;
 using Assets.Scripts.Views;
 using EventBus;
 using EventBus.Signals;
 using UnityEngine;
 
-namespace Assets.Scripts.Controllers
+namespace Controllers
 {
     internal class HeroSelectController:MonoBehaviour
     {

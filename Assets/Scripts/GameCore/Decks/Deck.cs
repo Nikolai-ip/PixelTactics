@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.GameCore.HeroModule;
+using Infrastructure.Services;
 
 namespace GameCore.Cards
 {

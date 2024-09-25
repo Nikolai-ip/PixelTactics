@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.GameCore.Fields;
 using Assets.Scripts.GameCore.HeroModule;
+using Infrastructure.Services;
 
 namespace GameCore.Fields
 {

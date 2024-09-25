@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using Assets.Scripts.Cmd;
 using Infrastructure;
-using Infrastructure.GameSM.GameStates;
+using Infrastructure.Factory;
+using Infrastructure.GameSM;
+using Infrastructure.GameSM.GameState;
+using Infrastructure.Services;
+using Infrastructure.Services.ServiceLocator;
 
 namespace GameCore
 {
@@ -10,12 +14,12 @@ namespace GameCore
     {
         private Dictionary<Type, IExitableState> _states;
         private IExitableState _currentState;
-        public GameStateMachine(SceneLoader sceneLoader)
+        public GameStateMachine(SceneLoader sceneLoader, GameServices services)
         {
             _states = new Dictionary<Type, IExitableState>()
             {
-                {typeof(BootstrapState), new BootstrapState(this, sceneLoader)},
-                {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader)},
+                {typeof(BootstrapState), new BootstrapState(this, sceneLoader, services)},
+                {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader,services.Single<IGameFactory>())},
                 {typeof(GameCycle), new GameCycle(this)},
             };
         }

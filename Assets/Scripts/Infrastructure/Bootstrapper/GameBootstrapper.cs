@@ -1,5 +1,5 @@
 using GameCore;
-using Infrastructure.GameSM.GameStates;
+using Infrastructure.GameSM.GameState;
 using UnityEngine;
 
 namespace Infrastructure

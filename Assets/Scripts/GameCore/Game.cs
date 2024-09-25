@@ -4,7 +4,9 @@ using Assets.Scripts.GameCore.HeroModule;
 using Assets.Scripts.GameCore.Fields;
 using GameCore.Fields;
 using Infrastructure;
-using Infrastructure.Factories.GameEntities;
+using Infrastructure.Factory.GameEntity;
+using Infrastructure.Services;
+using Infrastructure.Services.ServiceLocator;
 
 namespace GameCore
 {
@@ -24,7 +26,7 @@ namespace GameCore
             var rightPlayer = playerFabric.Get(new List<Hero>(), rightGameField);
             var leftPlayerActionHandler = playerActionHandlerFabric.Get(leftPlayer,rightPlayer);
             var rightPlayerActionHandler = playerActionHandlerFabric.Get(rightPlayer,leftPlayer); 
-            _stateMachine = new GameStateMachine(new SceneLoader(coroutineRunner));
+            _stateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), GameServices.Container);
         }
         
     }
