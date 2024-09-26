@@ -6,7 +6,7 @@ using Infrastructure.Services;
 
 namespace Infrastructure.GameSM.GameState
 {
-    public class GameCycle : IState, ICommandHandler<ICommand>, IService
+    public class GameCycle : IState
     {
         private readonly GameStateMachine _gameStateMachine;
         private GameStateMachine _game;

@@ -17,12 +17,11 @@ namespace GameCore
         private IExitableState _currentState;
         public GameStateMachine(SceneLoader sceneLoader, GameServices services)
         {
-            var gameCycle = new GameCycle(this);
             _states = new Dictionary<Type, IExitableState>()
             {
-                {typeof(BootstrapState), new BootstrapState(this, sceneLoader, gameCycle, services)},
-                {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader,services.Single<IGameFactory>())},
-                {typeof(GameCycle), gameCycle},
+                {typeof(BootstrapState), new BootstrapState(this, sceneLoader, services)},
+                {typeof(LoadLevelState), new LoadLevelState(this, sceneLoader,services.Single<IUnityViewFactory>())},
+                {typeof(GameCycle), new GameCycle(this)},
             };
         }
         public void Enter<TState>() where TState: class, IState

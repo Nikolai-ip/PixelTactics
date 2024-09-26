@@ -1,8 +1,7 @@
-﻿using Assets.Scripts.Cmd;
-using Assets.Scripts.GameCore.Fields;
+﻿using Assets.Scripts.GameCore.Fields;
 using Infrastructure.Cmd;
 
-namespace Assets.Scripts.GameCore.Commands
+namespace GameCore.Commands
 {
     internal class SelectHero : ICommand
     {

@@ -16,5 +16,11 @@ namespace Infrastructure.AssetManagement
             gameObj.transform.position = at;
             return gameObj;
         }
+
+        public TComponent Instantiate<TComponent>(string path) where TComponent : MonoBehaviour
+        {
+            var prefab = Resources.Load<TComponent>(path);
+            return Object.Instantiate(prefab);
+        }
     }
 }

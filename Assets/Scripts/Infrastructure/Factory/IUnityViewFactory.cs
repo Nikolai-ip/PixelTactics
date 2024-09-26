@@ -2,8 +2,8 @@
 
 namespace Infrastructure.Factory
 {
-    public interface IGameFactory:IService
+    public interface IUnityViewFactory:IService
     {
-        void CreateHud();
+        void CreateView();
     }
 }

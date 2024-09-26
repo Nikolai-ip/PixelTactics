@@ -1,6 +1,6 @@
-﻿using GameCore;
+﻿using Controllers.Input;
+using GameCore;
 using Infrastructure.AssetManagement;
-using Infrastructure.Cmd;
 using Infrastructure.Factory;
 using Infrastructure.Services;
 using Infrastructure.Services.ServiceLocator;
@@ -13,14 +13,12 @@ namespace Infrastructure.GameSM.GameState
         private const string MainScene = "Main";
         private readonly GameStateMachine _gameSm;
         private readonly SceneLoader _sceneLoader;
-        private readonly ICommandHandler<ICommand> _inputHandler;
         private GameServices _services;
 
-        public BootstrapState(GameStateMachine gameSm, SceneLoader sceneLoader,ICommandHandler<ICommand> inputHandler, GameServices gameServices)
+        public BootstrapState(GameStateMachine gameSm, SceneLoader sceneLoader, GameServices gameServices)
         {
             _gameSm = gameSm;
             _sceneLoader = sceneLoader;
-            _inputHandler = inputHandler;
             _services = gameServices;
             RegisterServices();
         }
@@ -44,9 +42,9 @@ namespace Infrastructure.GameSM.GameState
 
         private void RegisterServices()
         {
-            _services.RegisterSingle(_inputHandler);
+            _services.RegisterSingle<IInputHandler>(new InputController());
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
-            _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IAssetProvider>()));
+            _services.RegisterSingle<IUnityViewFactory>(new UnityViewFactory(_services.Single<IAssetProvider>(), _services.Single<IInputHandler>()));
         }
 
         public void Exit()

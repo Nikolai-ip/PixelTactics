@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Cmd;
-using Assets.Scripts.GameCore.Commands;
+using GameCore.Commands;
 using GameCore.Fields;
 using Infrastructure.Cmd;
 

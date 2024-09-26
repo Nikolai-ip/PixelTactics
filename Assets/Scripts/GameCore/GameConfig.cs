@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Assets.Scripts.Cmd;
-using Assets.Scripts.GameCore.Commands;
+using GameCore.Commands;
 
 namespace GameCore
 {

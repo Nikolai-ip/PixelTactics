@@ -1,9 +1,8 @@
-﻿using Assets.Scripts.Cmd;
-using Assets.Scripts.GameCore.Fields;
+﻿using Assets.Scripts.GameCore.Fields;
 using Assets.Scripts.GameCore.HeroModule;
 using Infrastructure.Cmd;
 
-namespace Assets.Scripts.GameCore.Commands
+namespace GameCore.Commands
 {
     public class HireHero : ICommand
     {
