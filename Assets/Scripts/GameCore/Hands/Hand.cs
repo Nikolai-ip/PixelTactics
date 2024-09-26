@@ -1,28 +1,30 @@
 ﻿using System.Collections.Generic;
-using GameCore.Cards;
+using Assets.Scripts.GameCore.HeroModule;
+using Infrastructure.Services;
 using JetBrains.Annotations;
 
-namespace GameCore.Hands
+namespace GameCore.Cards
 {
     public abstract class Hand : IService
     {
-        protected List<Card> _cards;
+        protected List<Hero> Heroes;
 
         [CanBeNull] 
-        public abstract Card this[int i] { get; set; }
+        public abstract Hero this[int i] { get; set; }
     
-        public void AddCard(Card card)
+        public bool TryAddHero(Hero Hero)
         {
-            if (_cards.Contains(card))
-                return;
+            if (Heroes.Contains(Hero))
+                return false;
             
-            _cards.Add(card);
+            Heroes.Add(Hero);
+            return true;
         }
         
         public void MoveTo(Hand hand)
         {
-            hand._cards = _cards;
-            _cards = null;
+            hand.Heroes = Heroes;
+            Heroes = null;
         }
     }
 }

@@ -1,13 +1,13 @@
-﻿using GameCore.Cards;
+﻿using Assets.Scripts.GameCore.HeroModule;
 
-namespace GameCore.Dumps
+namespace GameCore.Cards
 {
     class StandardDump : Dump
     {
-        public override Card this[int i]
+        public override Hero this[int i]
         {
-            get => _cards[i];
-            set => _cards[i] = value;
+            get => Heroes[i];
+            set => Heroes[i] = value;
         }
     }
 }
