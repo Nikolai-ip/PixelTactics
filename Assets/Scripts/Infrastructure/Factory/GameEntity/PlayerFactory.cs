@@ -8,7 +8,7 @@ namespace Infrastructure.Factory.GameEntity
 {
     internal class PlayerFactory
     {
-        public ServiceContainer Get(IEnumerable<Hero> Heroes,GameField gameField)
+        public ServiceContainer GetPlayer(IEnumerable<Hero> Heroes, GameField gameField)
         {
             var player = new ServiceContainer();
             player.Register<Deck>(new StandardDeck(Heroes));

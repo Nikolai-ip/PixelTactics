@@ -18,5 +18,10 @@ namespace GameCore.CommandHandlers
             var result = _gameField.TryHireHero(command.HireCoord, command.Hero);
             return result;
         }
+
+        public bool TryHandle(ICommand command)
+        {
+            return TryHandle(command as HireHero);
+        }
     }
 }

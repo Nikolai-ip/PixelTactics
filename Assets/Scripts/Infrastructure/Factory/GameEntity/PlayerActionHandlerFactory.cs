@@ -8,10 +8,11 @@ namespace Infrastructure.Factory.GameEntity
 {
     public class PlayerActionHandlerFactory
     {
-        public virtual PlayerActionHandler Get(ServiceContainer player, ServiceContainer enemy)
+        public virtual PlayerActionHandler GetPlayerActionHandler(ServiceContainer player, ServiceContainer enemy)
         {
             var playerActionHandler = new PlayerActionHandler(GameConfig.ActionCost);
             playerActionHandler.RegisterHandler(new HireHandler(player.Get<GameField>()));
+            playerActionHandler.RegisterHandler(new SelectHandler(player.Get<GameField>()));
             return playerActionHandler;
         }
     }

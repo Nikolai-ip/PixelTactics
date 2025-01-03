@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using GameCore;
 using Infrastructure.Cmd;
 
 namespace Assets.Scripts.Cmd
 {
     public class PlayerActionHandler : ICommandProcessor
     {
-        protected Dictionary<Type, object> _handlers;
+        protected Dictionary<Type, ICommandHandler> _handlers;
         protected int actionPoints;
 
         protected int ActionPoints
@@ -23,13 +23,14 @@ namespace Assets.Scripts.Cmd
         public event Action<int> ActionPointsChanged;
         protected Dictionary<Type, int> ActionPointMap;
 
-        public PlayerActionHandler(Dictionary<Type, int> actionPointMap, Dictionary<Type, object> handlers = null)
+        public PlayerActionHandler(Dictionary<Type, int> actionPointMap, Dictionary<Type, ICommandHandler> handlers = null)
         {
             ActionPointMap = actionPointMap;
             if (handlers == null)
                 _handlers = new();
             else
                 _handlers = handlers;
+            ResetActionPoints();
         }
         public void RegisterHandler<TCommand>(ICommandHandler<TCommand> handler) where TCommand : ICommand
         {
@@ -39,17 +40,16 @@ namespace Assets.Scripts.Cmd
 
         public bool Process<TCommand>(TCommand command) where TCommand : ICommand
         {
-            if (_handlers.TryGetValue(typeof(ICommand), out var handlerObj))
+            if (_handlers.TryGetValue(command.GetType(), out ICommandHandler handler))
             {
-                var handler = (ICommandHandler<ICommand>)handlerObj;
-                var result = handler.TryHandle(command);
-                if (result)
+                if (handler.TryHandle(command))
                 {
-                    ActionPoints -= ActionPointMap[typeof(TCommand)];
+                    ActionPoints -= ActionPointMap[command.GetType()];
+                    return true;
                 }
-                return result;
             }
             return false;
         }
+        private void ResetActionPoints() => ActionPoints = GameConfig.ActionsAmount;
     }
 }

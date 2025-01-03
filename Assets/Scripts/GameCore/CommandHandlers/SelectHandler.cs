@@ -22,5 +22,10 @@ namespace GameCore.CommandHandlers
             }
             return false;
         }
+
+        public bool TryHandle(ICommand command)
+        {
+            return TryHandle(command as SelectHero);
+        }
     }
 }

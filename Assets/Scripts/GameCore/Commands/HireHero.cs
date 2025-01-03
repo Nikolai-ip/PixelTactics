@@ -1,12 +1,13 @@
 ﻿using Assets.Scripts.GameCore.Fields;
 using Assets.Scripts.GameCore.HeroModule;
+using GameCore.Fields;
 using Infrastructure.Cmd;
 
 namespace GameCore.Commands
 {
     public class HireHero : ICommand
     {
-        public HireHero(Coord hireCoord, Hero hero)
+        public HireHero(GameField field, Coord hireCoord, Hero hero)
         {
             HireCoord = hireCoord;
             Hero = hero;
