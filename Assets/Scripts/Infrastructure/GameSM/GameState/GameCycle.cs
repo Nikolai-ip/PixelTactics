@@ -38,7 +38,6 @@ namespace Infrastructure.GameSM.GameState
             LeftPlayerActionHandler = playerActionHandlerFabric.GetPlayerActionHandler(_leftPlayer,_rightPlayer);
             RightPlayerActionHandler= playerActionHandlerFabric.GetPlayerActionHandler(_rightPlayer,_leftPlayer);
             CurrentPlayer = LeftPlayerActionHandler;
-            TryHandle(new HireHero(_leftField, new Coord(1, 2), new Hero("Assassin")));
         }
 
         public void Exit()
