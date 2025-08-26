@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.GameCore.Fields;
+﻿using GameCore.Fields;
 using UnityEngine;
 
 namespace Views

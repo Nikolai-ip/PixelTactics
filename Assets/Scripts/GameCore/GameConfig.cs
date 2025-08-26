@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GameCore.Commands;
+using GameCore.HeroModule;
 
 namespace GameCore
 {
@@ -16,5 +17,7 @@ namespace GameCore
         {
             {typeof(HireHero), 1},
         };
+
+        public static IEnumerable<Hero> Heroes => new List<Hero>();
     }
 }

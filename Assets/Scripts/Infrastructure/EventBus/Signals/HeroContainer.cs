@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.GameCore.HeroModule;
+﻿using GameCore.HeroModule;
 
-namespace EventBus.Signals
+namespace Infrastructure.EventBus.Signals
 {
     public class HeroContainer:ISignal
     {

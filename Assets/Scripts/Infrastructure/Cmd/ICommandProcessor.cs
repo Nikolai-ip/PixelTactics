@@ -1,6 +1,4 @@
-﻿using Infrastructure.Cmd;
-
-namespace Assets.Scripts.Cmd
+﻿namespace Infrastructure.Cmd
 {
     public interface ICommandProcessor
     {

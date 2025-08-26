@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.GameCore.HeroModule;
+﻿using GameCore.HeroModule;
 
-namespace GameCore.Cards
+namespace GameCore.Dumps
 {
     class StandardDump : Dump
     {

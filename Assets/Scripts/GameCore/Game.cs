@@ -1,24 +1,52 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Assets.Scripts.GameCore.HeroModule;
-using Assets.Scripts.GameCore.Fields;
-using GameCore.Fields;
-using Infrastructure;
+﻿using GameCore.Fields;
+using GameCore.PlayerCmd;
+using Infrastructure.Cmd;
 using Infrastructure.Factory.GameEntity;
-using Infrastructure.Services;
-using Infrastructure.Services.ServiceLocator;
 
 namespace GameCore
 {
-    public class Game
+    public class Game : IModelCommandHandler
     {
-        private readonly GameStateMachine _stateMachine;
-        private int _currentPlayerTurn = 0;
-        public GameStateMachine StateMachine => _stateMachine;
-        public Game(ICoroutineRunner coroutineRunner)
+        private readonly GameActionHandler _gameActionHandler;
+        private readonly GameContext _gameContext;
+        public Game(IPlayerFactory playerFactory, IActionHandlerFactory actionHandlerFactory)
         {
-            _stateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), GameServices.Container);
+            var leftField = new GameField(GameConfig.FieldSizeX, GameConfig.FieldSizeY);
+            var rightField = new GameField(GameConfig.FieldSizeX, GameConfig.FieldSizeY);
+            var leftPlayer = playerFactory.GetPlayer(leftField);
+            var rightPlayer = playerFactory.GetPlayer(rightField);
+            var currentPlayer = leftPlayer;
+            _gameContext = new GameContext(leftPlayer, rightPlayer, currentPlayer, leftField, rightField );
+            _gameActionHandler = actionHandlerFactory.GetActionHandler(_gameContext);
         }
-        
+        public bool TryHandle(ICommand command)
+        {
+            var result = _gameActionHandler.Process(command);
+            return result;
+        }
+    }
+
+    public class GameContext
+    {
+        public Player LeftPlayer { get;}
+
+        public Player RightPlayer { get; }
+
+        public Player CurrentPlayer { get;}
+
+        public GameField LeftField { get;}
+
+        public GameField RightField { get; }
+        public WaveType CurrentWaveType { get; private set; }
+
+        public GameContext(Player leftPlayer, Player rightPlayer, Player currentPlayer, GameField leftField, GameField rightField)
+        {
+            LeftPlayer = leftPlayer;
+            RightPlayer = rightPlayer;
+            CurrentPlayer = currentPlayer;
+            LeftField = leftField;
+            RightField = rightField;
+            CurrentWaveType = WaveType.Front;
+        }
     }
 }

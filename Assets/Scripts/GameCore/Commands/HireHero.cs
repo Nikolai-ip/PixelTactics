@@ -1,6 +1,5 @@
-﻿using Assets.Scripts.GameCore.Fields;
-using Assets.Scripts.GameCore.HeroModule;
-using GameCore.Fields;
+﻿using GameCore.Fields;
+using GameCore.HeroModule;
 using Infrastructure.Cmd;
 
 namespace GameCore.Commands

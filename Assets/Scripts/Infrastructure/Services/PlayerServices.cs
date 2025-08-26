@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace Infrastructure.Services
 {
-    public class ServiceContainer
+    public class PlayerServices
     {
         private Dictionary<Type, IService> _services;
-        public ServiceContainer()
+        public PlayerServices()
         {
             _services = new Dictionary<Type, IService>();
         }

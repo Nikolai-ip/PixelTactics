@@ -1,9 +1,11 @@
-﻿using Controllers.Input;
+﻿using System.Collections.Generic;
 using GameCore;
 using Infrastructure.AssetManagement;
 using Infrastructure.Factory;
+using Infrastructure.Factory.GameEntity;
 using Infrastructure.Services;
 using Infrastructure.Services.ServiceLocator;
+using Presenter.Input;
 
 namespace Infrastructure.GameSM.GameState
 {
@@ -42,9 +44,11 @@ namespace Infrastructure.GameSM.GameState
 
         private void RegisterServices()
         {
-            _services.RegisterSingle<IInputHandler>(new InputController());
+            _services.RegisterSingle<IInputHandler>(new InputHandler());
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
             _services.RegisterSingle<IUnityViewFactory>(new UnityViewFactory(_services.Single<IAssetProvider>(), _services.Single<IInputHandler>()));
+            _services.RegisterSingle(new PlayerFactory(GameConfig.Heroes));
+            _services.RegisterSingle(new ActionHandlerFactory());
         }
 
         public void Exit()

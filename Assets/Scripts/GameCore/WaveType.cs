@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.GameCore
+﻿namespace GameCore
 {
     public enum WaveType
     {

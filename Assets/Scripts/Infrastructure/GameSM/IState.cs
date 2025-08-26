@@ -1,6 +1,4 @@
-﻿using Assets.Scripts.Cmd;
-
-namespace Infrastructure.GameSM
+﻿namespace Infrastructure.GameSM
 {
     public interface IState:IExitableState
     {

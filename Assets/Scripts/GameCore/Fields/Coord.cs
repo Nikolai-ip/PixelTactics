@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.GameCore.Fields
+﻿namespace GameCore.Fields
 {
     public struct Coord
     {

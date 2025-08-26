@@ -1,20 +1,30 @@
 ﻿using System.Collections.Generic;
-using Assets.Scripts.GameCore.HeroModule;
-using GameCore.Cards;
+using GameCore;
+using GameCore.Decks;
+using GameCore.Dumps;
 using GameCore.Fields;
+using GameCore.Hands;
+using GameCore.HeroModule;
 using Infrastructure.Services;
 
 namespace Infrastructure.Factory.GameEntity
 {
-    internal class PlayerFactory
+    public class PlayerFactory : IPlayerFactory
     {
-        public ServiceContainer GetPlayer(IEnumerable<Hero> Heroes, GameField gameField)
+        private IEnumerable<Hero> _heroes;
+        public PlayerFactory(IEnumerable<Hero> heroes)
         {
-            var player = new ServiceContainer();
-            player.Register<Deck>(new StandardDeck(Heroes));
-            player.Register<Hand>(new StandardHand());
-            player.Register<Dump>(new StandardDump());
-            player.Register<GameField>(gameField);
+            _heroes = heroes;
+        }
+
+        public Player GetPlayer(GameField gameField)
+        {
+            var serviceContainer = new PlayerServices();
+            serviceContainer.Register<Deck>(new StandardDeck(_heroes));
+            serviceContainer.Register<Hand>(new StandardHand());
+            serviceContainer.Register<Dump>(new StandardDump());
+            serviceContainer.Register<GameField>(gameField);
+            var player = new Player(gameField, serviceContainer);
             return player;
         }
     }

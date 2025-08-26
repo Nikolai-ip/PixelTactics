@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Assets.Scripts.Cmd;
 using GameCore;
-using GameCore.Cards;
+using GameCore.Decks;
+using GameCore.Hands;
 using Infrastructure.Cmd;
 using Infrastructure.Services;
 
@@ -9,7 +9,7 @@ namespace Infrastructure.GameSM.GameState
 { 
     public class Beginning : IState
     {
-        private readonly List<ServiceContainer> _players;
+        private readonly List<PlayerServices> _players;
 
         public void Enter()
         {

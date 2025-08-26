@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.GameCore.Fields;
-using Controllers.Input;
-using GameCore.Commands;
+﻿using GameCore.Commands;
+using GameCore.Fields;
+using Presenter.Input;
 using UnityEngine;
 
 namespace Views

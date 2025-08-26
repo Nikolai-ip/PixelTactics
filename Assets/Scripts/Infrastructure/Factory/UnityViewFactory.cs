@@ -1,6 +1,6 @@
-﻿using Controllers.Input;
-using Infrastructure.AssetManagement;
+﻿using Infrastructure.AssetManagement;
 using Infrastructure.Services.ServiceLocator;
+using Presenter.Input;
 using UnityEngine;
 using Views;
 

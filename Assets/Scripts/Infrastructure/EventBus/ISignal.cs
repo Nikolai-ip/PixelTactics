@@ -1,4 +1,4 @@
-﻿namespace EventBus
+﻿namespace Infrastructure.EventBus
 {
     public interface ISignal
     {

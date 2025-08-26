@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.GameCore.HeroModule
+﻿namespace GameCore.HeroModule
 {
     public class Hero
     {

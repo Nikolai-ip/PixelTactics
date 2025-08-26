@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Cmd;
-using GameCore.Commands;
+﻿using GameCore.Commands;
 using GameCore.Fields;
 using Infrastructure.Cmd;
 
@@ -7,15 +6,15 @@ namespace GameCore.CommandHandlers
 {
     public class HireHandler : ICommandHandler<HireHero>
     {
-        private GameField _gameField;
-        public HireHandler(GameField gameField)
+        private GameContext _gameContext;
+        public HireHandler(GameContext gameContext)
         {
-            _gameField = gameField;
+            _gameContext = gameContext;
         }
 
         public bool TryHandle(HireHero command)
         {
-            var result = _gameField.TryHireHero(command.HireCoord, command.Hero);
+            var result = _gameContext.CurrentPlayer.Field.TryHireHero(command.HireCoord, command.Hero);
             return result;
         }
 

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.GameCore.HeroModule;
+﻿using GameCore.HeroModule;
 using UnityEngine;
 using Views.Interfaces;
 

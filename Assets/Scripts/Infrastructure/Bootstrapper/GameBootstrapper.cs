@@ -1,17 +1,17 @@
-using GameCore;
+using Infrastructure.GameSM;
 using Infrastructure.GameSM.GameState;
 using UnityEngine;
 
-namespace Infrastructure
+namespace Infrastructure.Bootstrapper
 {
     public class GameBootstrapper : MonoBehaviour, ICoroutineRunner
     {
-        private static Game _game;
+        private static GameStateMachineBuilder _gameStateMachineBuilder;
 
         private void Awake()
         {
-            _game = new Game(this);
-            _game.StateMachine.Enter<BootstrapState>();
+            _gameStateMachineBuilder = new GameStateMachineBuilder(this);
+            _gameStateMachineBuilder.StateMachine.Enter<BootstrapState>();
             DontDestroyOnLoad(this);
         }
     }

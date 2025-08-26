@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using GameCore;
 using Infrastructure.Cmd;
 
-namespace Assets.Scripts.Cmd
+namespace GameCore.PlayerCmd
 {
-    public class PlayerActionHandler : ICommandProcessor
+    public class GameActionHandler : ICommandProcessor
     {
         protected Dictionary<Type, ICommandHandler> _handlers;
         protected int actionPoints;
@@ -23,7 +22,7 @@ namespace Assets.Scripts.Cmd
         public event Action<int> ActionPointsChanged;
         protected Dictionary<Type, int> ActionPointMap;
 
-        public PlayerActionHandler(Dictionary<Type, int> actionPointMap, Dictionary<Type, ICommandHandler> handlers = null)
+        public GameActionHandler(Dictionary<Type, int> actionPointMap, Dictionary<Type, ICommandHandler> handlers = null)
         {
             ActionPointMap = actionPointMap;
             if (handlers == null)

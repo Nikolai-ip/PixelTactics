@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Assets.Scripts.GameCore.HeroModule;
+using GameCore.HeroModule;
 using Infrastructure.Services;
 using JetBrains.Annotations;
 
-namespace GameCore.Cards
+namespace GameCore.Dumps
 {
     public abstract class Dump : IService
     {
